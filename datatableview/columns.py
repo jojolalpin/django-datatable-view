@@ -347,7 +347,7 @@ class Column(six.with_metaclass(ColumnMetaclass)):
             for sub_source in self.expand_source(source):
                 modelfield = resolve_orm_path(model, sub_source)
                 if modelfield.choices:
-                    for db_value, label in modelfield.get_flatchoices():
+                    for db_value, label in modelfield.flatchoices:
                         if term.lower() in label.lower():
                             k = '%s__exact' % (sub_source,)
                             column_queries.append(Q(**{k: str(db_value)}))
